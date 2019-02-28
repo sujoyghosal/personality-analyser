@@ -122,10 +122,10 @@ app.get('/pagecount', function(req, res) {
     }
     if (db) {
         db.collection('personalities').count(function(err, count) {
-            res.send('{ pageCount: ' + count + '}');
+            res.send('{ recordsCount: ' + count + '}');
         });
     } else {
-        res.send('{ pageCount: -1 }');
+        res.send('{ recordsCount: -1 }');
     }
 });
 app.get('/personality', function(req, res) {
@@ -149,9 +149,9 @@ app.get('/personality', function(req, res) {
                     col.insert({ report: response, date: Date.now() });
                     col.count(function(err, count) {
                         if (err) {
-                            console.log('Error running count. Message:\n' + err);
+                            console.log('Error inserting record. Message:\n' + err);
                         }
-                        //res.render('index.html', { pageCountMessage: count, dbInfo: dbDetails });
+                        console.log("Successfully inserted personality record to Mongo DB!!");
                     });
                 };
                 res.jsonp(response);
