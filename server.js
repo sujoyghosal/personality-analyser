@@ -121,7 +121,7 @@ app.get('/pagecount', function(req, res) {
         initDb(function(err) {});
     }
     if (db) {
-        db.collection('counts').count(function(err, count) {
+        db.collection('personalities').count(function(err, count) {
             res.send('{ pageCount: ' + count + '}');
         });
     } else {
@@ -133,6 +133,7 @@ app.get('/personality', function(req, res) {
     var params = {
         "text": text
     }
+
     personalityInsights.profile({
             text: text,
             consumption_preferences: true
@@ -141,8 +142,20 @@ app.get('/personality', function(req, res) {
             if (err) {
                 console.log(err);
                 res.jsonp(err);
-            } else
+            } else {
+                if (db) {
+                    var col = db.collection('personalities');
+                    // Create a document with request IP and current time of request
+                    col.insert({ report: response, date: Date.now() });
+                    col.count(function(err, count) {
+                        if (err) {
+                            console.log('Error running count. Message:\n' + err);
+                        }
+                        res.render('index.html', { pageCountMessage: count, dbInfo: dbDetails });
+                    });
+                };
                 res.jsonp(response);
+            }
         });
 });
 // error handling
