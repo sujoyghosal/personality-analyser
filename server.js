@@ -151,7 +151,7 @@ app.get('/personality', function(req, res) {
                         if (err) {
                             console.log('Error running count. Message:\n' + err);
                         }
-                        res.render('index.html', { pageCountMessage: count, dbInfo: dbDetails });
+                        //res.render('index.html', { pageCountMessage: count, dbInfo: dbDetails });
                     });
                 };
                 res.jsonp(response);
