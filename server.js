@@ -105,7 +105,7 @@ app.get('/', function(req, res) {
         col.insert({ ip: req.ip, date: Date.now() });
         col.count(function(err, count) {
             if (err) {
-                console.log('Error running count. Message:\n' + err);
+                console.log('Error getting count. Message:\n' + err);
             }
             res.render('index.html', { pageCountMessage: count, dbInfo: dbDetails });
         });
