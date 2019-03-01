@@ -122,7 +122,7 @@ app.get('/recordscount', function(req, res) {
     }
     if (db) {
         db.collection('personalities').count(function(err, count) {
-            res.send('{ recordsCount: ' + count + '}');
+            res.send('{ RecordsCount: ' + count + '}');
         });
     } else {
         res.send('{ recordsCount: -1 }');
