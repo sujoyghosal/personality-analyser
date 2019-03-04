@@ -2,9 +2,9 @@ applications:
 - path: .
   memory: 128M
   instances: 1
-  domain: mybluemix.net
+  domain: openshiftapps.com
   name: personality-analyser-sujoy
   host: personality-analyser-sujoy
-  disk_quota: 1024M
+  disk_quota: 512M
   services:
   - Personality Insights-1u
