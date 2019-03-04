@@ -7,15 +7,6 @@ Object.assign = require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
-
-var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
-
-var personalityInsights = new PersonalityInsightsV3({
-    version: process.env.WATSON_API_VERSION || '2019-02-28',
-    iam_apikey: process.env.WATSON_API_KEY || 'JwzDifZKOCyUc_TQzJXbPB0xUo9gPcu_Au54zEogBbU6',
-    url: process.env.WATSON_API_URL || 'https://gateway.watsonplatform.net/personality-insights/api'
-});
-
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -28,6 +19,14 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 app.use(allowCrossDomain);
+var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+
+var personalityInsights = new PersonalityInsightsV3({
+    version: process.env.WATSON_API_VERSION || '2019-02-28',
+    iam_apikey: process.env.WATSON_API_KEY || 'JwzDifZKOCyUc_TQzJXbPB0xUo9gPcu_Au54zEogBbU6',
+    url: process.env.WATSON_API_URL || 'https://gateway.watsonplatform.net/personality-insights/api'
+});
+
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
