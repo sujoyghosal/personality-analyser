@@ -1,10 +1,10 @@
 applications:
 - path: .
-  memory: 128M
+  memory: 512M
   instances: 1
   domain: openshiftapps.com
   name: personality-analyser-sujoy
   host: personality-analyser-sujoy
-  disk_quota: 512M
+  disk_quota: 1024M
   services:
   - Personality Insights-1u
