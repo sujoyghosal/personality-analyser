@@ -146,12 +146,6 @@ app.get('/personality', function(req, res) {
                     var col = db.collection('personalities');
                     // Create a document with request IP and current time of request
                     col.insert({ report: response, date: Date.now() });
-                    col.count(function(err, count) {
-                        if (err) {
-                            console.log('Error inserting record. Message:\n' + err);
-                        }
-                        console.log("Successfully inserted personality record to Mongo DB!!");
-                    });
                 };
                 res.jsonp(response);
             }
