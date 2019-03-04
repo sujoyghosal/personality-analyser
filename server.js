@@ -11,9 +11,9 @@ app.use(morgan('combined'))
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 
 var personalityInsights = new PersonalityInsightsV3({
-    version: '2019-02-28',
-    iam_apikey: 'JwzDifZKOCyUc_TQzJXbPB0xUo9gPcu_Au54zEogBbU6',
-    url: 'https://gateway.watsonplatform.net/personality-insights/api'
+    version: process.env.WATSON_API_VERSION || '2019-02-28',
+    iam_apikey: process.env.WATSON_API_KEY || 'JwzDifZKOCyUc_TQzJXbPB0xUo9gPcu_Au54zEogBbU6',
+    url: process.env.WATSON_API_URL || 'https://gateway.watsonplatform.net/personality-insights/api'
 });
 
 var allowCrossDomain = function(req, res, next) {
