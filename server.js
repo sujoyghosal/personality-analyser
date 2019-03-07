@@ -4,7 +4,6 @@ var express = require('express'),
     morgan = require('morgan');
 
 Object.assign = require('object-assign')
-
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 var allowCrossDomain = function(req, res, next) {
@@ -154,7 +153,7 @@ app.get('/personality', function(req, res) {
 // error handling
 app.use(function(err, req, res, next) {
     console.error(err.stack);
-    res.status(500).send('Something bad happened!');
+    res.status(500).send('Error!');
 });
 
 initDb(function(err) {
