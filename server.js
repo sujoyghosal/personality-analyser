@@ -158,6 +158,7 @@ app.use(function(err, req, res, next) {
 
 initDb(function(err) {
     console.log('Error connecting to Mongo. Message:\n' + err);
+    console.log("Test logging");
 });
 
 app.listen(port, ip);
